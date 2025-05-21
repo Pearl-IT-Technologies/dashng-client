@@ -27,13 +27,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Skeleton } from "@/components/ui/skeleton";
+// import { Skeleton } from "@/components/ui/skeleton";
 import { Helmet } from "react-helmet";
 import { useUserAddresses, UserAddress } from "@/hooks/use-user-addresses";
 import { useUserPaymentMethods, UserPaymentMethod } from "@/hooks/use-user-payment-methods";
 import { useUserNotifications } from "@/hooks/use-user-notifications";
 import { useUserSettings } from "@/hooks/use-user-settings";
-import { useWishlist } from "@/hooks/use-wishlist";
+// import { useWishlist } from "@/hooks/use-wishlist";
 import { AddressCard } from "@/components/user/AddressCard";
 import { AddressForm } from "@/components/user/AddressForm";
 import { PaymentMethodCard } from "@/components/user/PaymentMethodCard";
@@ -144,8 +144,7 @@ const UserDashboard = () => {
                   <div className="flex items-center space-x-3">
                     <Avatar className="w-12 h-12">
                       <AvatarFallback className="bg-[#D4AF37] text-white">
-                        {user.firstName ? user.firstName[0] : user.username[0]}
-                        {user.lastName ? user.lastName[0] : ""}
+                        {user.firstName ? user.firstName?.slice(0, 2) : user.username?.slice(0, 2)}
                       </AvatarFallback>
                     </Avatar>
                     <div>
@@ -487,10 +486,10 @@ const UserNotificationsSection = () => {
 
 // User Settings Section Component
 const UserSettingsSection = () => {
-  const { settings, isLoading, updateSettingsMutation } = useUserSettings();
+  const { settings, isLoading, updateSettings } = useUserSettings();
 
   const handleSubmit = (data: any) => {
-    updateSettingsMutation.mutate(data);
+    updateSettings(data);
   };
 
   return (

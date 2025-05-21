@@ -1,4 +1,3 @@
-import { UserSetting, SettingsUpdateData } from "@/hooks/use-user-settings";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -37,11 +36,11 @@ const settingsFormSchema = z.object({
   stockUpdateNotifications: z.boolean().default(true),
 });
 
-type SettingsFormValues = z.infer<typeof settingsFormSchema>;
+export type SettingsFormValues = z.infer<typeof settingsFormSchema>;
 
 interface SettingsFormProps {
-  settings?: UserSetting;
-  onSubmit: (data: SettingsUpdateData) => void;
+  settings?: any;
+  onSubmit: (data: any) => void;
   isSubmitting?: boolean;
 }
 
